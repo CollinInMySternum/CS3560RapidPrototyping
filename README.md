@@ -1,21 +1,37 @@
 # CS3560RapidPrototyping
 Rapid Prototyping for CS 3560
 
--Open
+-Create, Close, Open
 
-Open Categories
+open "categoryname" - Opens a category and moves to this directory.
+close - Closes the category and moves out to the parent directory.
+create "categoryname" - Creates a category in the current directory.
 
-    - Class 1
-    - Work
-    - Something Stupid
+Flow -
 
-open "Class 1"
+User opens app..
 
-Open Tasks
-    - This
+create Some Random Task
 
-Completed Tasks
-    - Finished Task 1
+Output:
 
+1. Some Random Task
 
-Open task
+Input:
+
+open Some Random Task
+create "Some Task 1"
+
+Output:
+Category Created Successfully "Some Task 1"
+
+1. Some Random Task
+
+Input:
+
+open Some Random Task:
+
+Output:
+Opened Category "Some Random Task"
+
+Open Categories:
