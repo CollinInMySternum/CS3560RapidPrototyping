@@ -1,17 +1,18 @@
 #include <cstdlib>
 #include <vector>
 #include <map>
+#include <string>
+
+using namespace std;
 
 struct Category {
     Category* OwningCategory;
     std::map<std::string, Category> Categories;
 }
 
-Category TopCategory;
-
-using namespace std;
-
 int main() {
+    Category TopCategory;
+
     cout << "Hello, welcome to the app!";
 
     cout << "Open or Create a Category.";
@@ -44,9 +45,13 @@ int main() {
         }
     
         if(command == ("close")) {
-            CurrentCategory = CurrentCategory.OwningCategory;
-
-            cout << "Category Closed.";
+            if(CurrentCategory.OwningCategory == nullptr) {
+                cout << "Cannot Close Category";
+            }
+            else {
+                CurrentCategory = CurrentCategory.OwningCategory;
+                cout << "Category Closed.";
+            }
         }
 
         if(command == ("create")) {
