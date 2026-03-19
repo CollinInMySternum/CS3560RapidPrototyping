@@ -11,7 +11,7 @@ struct Category {
 }
 
 int main() {
-    Category TopCategory;
+    Category* TopCategory = new TopCategory();
 
     cout << "Hello, welcome to the app!";
 
@@ -22,7 +22,7 @@ int main() {
 
     while(true) {
 
-        for(int i = 0; i < Categories.size(); i++) {
+        for(auto& Category:  CurrentCategory->Categories) {
             cout << i << ": " << Category.key << "\n";
         }
     
