@@ -1,8 +1,11 @@
-#include "task.h"
-
 #include <cstdlib>
 #include <vector>
 #include <map>
+
+struct Category {
+    Category* OwningCategory;
+    std::map<std::string, Category> Categories;
+}
 
 Category TopCategory;
 
@@ -17,7 +20,7 @@ int main() {
     Category* CurrentCategory = TopCategory;
 
     while(true) {
-        
+
         for(int i = 0; i < Categories.size(); i++) {
             cout << i << ": " << Category.key << "\n";
         }
