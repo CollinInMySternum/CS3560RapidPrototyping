@@ -7,65 +7,82 @@ using namespace std;
 
 struct Category {
     Category* OwningCategory;
-    std::map<std::string, Category> Categories;
+    std::map<std::string, Category*> Categories;
 }
 
 int main() {
-    Category* TopCategory = new TopCategory();
+    Category* TopCategory = new Category();
 
-    cout << "Hello, welcome to the app!";
+    cout << "Hello, welcome to the app! \n";
 
-    cout << "Open or Create a Category.";
-    cout << "Open Categories: ";
+    cout << "Open or Create a Category. \n";
+    cout << "Open Categories: \n";
 
     Category* CurrentCategory = TopCategory;
 
     while(true) {
 
+        int i = 0;
+
+        cout << "\n";
+
         for(auto& Category:  CurrentCategory->Categories) {
-            cout << i << ": " << Category.key << "\n";
+            i++;
+            cout << i << ": " << Category.first << "\n";
         }
+
+        cout << "\n";
     
         string Command;
-        cin >> command;
+        cin >> Command;
         
-        if(command == "open") {
+        if(Command == "open") {
             cout << "Open Category by Name: ";
             string CategoryName;
 
             cin >> CategoryName;
 
-            if(CurrentCategory.Categories.Contains(CategoryName)) {
-                CurrentCategory = CurrentCategory.Categories[CategoryName];
+            if(CurrentCategory->Categories.find(CategoryName) != CurrentCategory->Categories.end()) {
+                CurrentCategory = CurrentCategory->Categories[CategoryName];
+
+                cout << "\n";
+                cout << "Category opened.\n";
             }
 
             else {
-                cout << "Category not found.";
+                cout << "\n";
+                cout << "Category not found.\n";
             }
         }
     
-        if(command == ("close")) {
-            if(CurrentCategory.OwningCategory == nullptr) {
-                cout << "Cannot Close Category";
+        if(Command == ("close")) {
+            if(CurrentCategory->OwningCategory == nullptr) {
+                cout << "\n";
+                cout << "Cannot Close Category\n";
             }
             else {
-                CurrentCategory = CurrentCategory.OwningCategory;
-                cout << "Category Closed.";
+                CurrentCategory = CurrentCategory->OwningCategory;
+                cout << "Category Closed.\n";
             }
         }
 
-        if(command == ("create")) {
+        if(Command == ("create")) {
+            cout << "\n";
             cout << "Name this Category: ";
             
             string CategoryName;
             cin >> CategoryName;
             
-            cout << "New Category Created: " << CategoryName;
+            cout << "New Category Created: " << CategoryName << "\n";
             
             Category* NewCategory = new Category;
             NewCategory->OwningCategory = CurrentCategory;
 
-            CurrentCategory.Categories.insert({CategoryName, NewCategory});
+            CurrentCategory->Categories.insert({CategoryName, NewCategory});
         }
+
+        if(Command == ("exit")) return 0;
     }
+
+    return 1;
 }
